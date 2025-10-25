@@ -1,0 +1,49 @@
+
+.feedback-table-container {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+.feedback-table-container h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.feedback-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.feedback-table th,
+.feedback-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.feedback-table th {
+  background-color: #e0e0e0;
+}
+
+.filled {
+  color: gold;
+}
+
+span {
+  font-size: 18px;
+}
+
+.modal.fade.show {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-backdrop.fade.show {
+  opacity: 0.5;
+}
+h1{
+    margin:auto;
+    font-family: Arial, sans-serif;
+}

@@ -1,0 +1,41 @@
+<section class="hero-banner d-flex align-items-center justify-content-between">
+  <div class="hero-text">
+    <h1>Fill your cart<br>not your stress level</h1>
+    <button class="btn btn-dark mt-3" routerLink="/viewProducts">Shop Now</button>
+  </div>
+  </section>
+  
+<section class="banner-image-section">
+  <img [src]="bannerItems[currentIndex].image" alt="banner" class="banner-img">
+</section>
+
+
+<section class="categories container my-5">
+  <div class="row g-4 text-center">
+    <div class="col-6 col-md-4 col-lg-3" *ngFor="let category of categories">
+      <div class="category-card">
+        <img [src]="category.image" [alt]="category.name" class="img-fluid rounded-4">
+        <h5 class="mt-3">{{ category.name }}</h5>
+        <button class="btn btn-outline-dark btn-sm mt-2" (click)="onCategories(category)">
+          Shop Now
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="benefits container my-5">
+  <div class="row text-center g-4">
+    <div class="col-md-4" *ngFor="let benefit of benefits">
+      <div class="benefit-card p-4">
+        <div class="benefit-icon mb-3">
+          <i [class]="benefit.icon"></i>
+        </div>
+        <h5>{{ benefit.title }}</h5>
+        <p>{{ benefit.subtitle }}</p>
+      </div>
+    </div>
+  </div>
+</section>

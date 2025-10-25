@@ -1,0 +1,31 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Available Products</h2>
+
+  <div *ngIf="filteredProducts.length === 0" class="alert alert-warning text-center">
+    Oops! Products are not available!
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4 " *ngIf="products.length > 0">
+    <label for="category" class="form-label">Filter by Category:</label>
+    <select id="category" class="form-select" [(ngModel)]="selectedCategory" (change)="filterProducts()">
+      <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+    </select>
+    <div class="col" *ngFor="let product of filteredProducts">
+      <div class="card h-100 shadow-sm card-body">
+        <img [src]="image+product.photoImage" class="card img" alt="{{ product.name }}"
+          style="height: 200px; object-fit: cover;">
+        <div class="card-body">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <p class="card-text">{{ product.description }}</p>
+          <p class="card-text"><strong>Price:</strong> ₹{{ product.price }}</p>
+
+          <button class="btn btn-success w-100" (click)="addToCart(product)"
+            [disabled]="product.stock == 0 || product.adding||role==null">
+            {{ product.stock == 0 ? 'Out Of Stock' : (product.adding ? 'Added!' : 'Add to Cart') }}
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

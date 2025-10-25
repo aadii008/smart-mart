@@ -1,0 +1,10 @@
+<div>
+    <h2>Feedback Dashboard</h2>
+    <button (click)="reclassify()" class="btn btn-primary">Reclassify Feedbacks</button>
+    <div style="margin-top:20px;">
+        <plotly-plot [data]="overallData" [layout]="overallLayout"></plotly-plot>
+    </div>
+    <div style="margin-top:40px;">
+        <plotly-plot [data]="perProductData" [layout]="perProductLayout"></plotly-plot>
+    </div>
+</div>

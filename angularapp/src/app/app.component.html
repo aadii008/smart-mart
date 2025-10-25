@@ -1,0 +1,11 @@
+<div>
+    <nav>
+        <app-navbar *ngIf="role==null && showNavbar"></app-navbar>
+        <app-adminnavbar *ngIf="role!=null && showNavbar"></app-adminnavbar>
+        <app-usernavbar *ngIf="role!=null &&showNavbar"></app-usernavbar> 
+    </nav>
+    <body>
+        <router-outlet></router-outlet>
+    </body>
+</div>
+

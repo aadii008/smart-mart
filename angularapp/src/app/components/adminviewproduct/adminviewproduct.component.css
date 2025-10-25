@@ -1,0 +1,78 @@
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.col {
+  padding: 1rem;
+}
+
+.card {
+  border-radius: 16px;
+  /* background: linear-gradient(to bottom right, #fdfdfd, #eaeaea); */
+  background-color:rgb(163, 165, 252);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  margin-right: 5px;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  /* box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); */
+  box-shadow: 0 0 8px 10px rgba(160, 148, 157, 0.8);
+}
+
+.card img {
+  pointer-events: none;
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  object-fit: contain;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  background-color: #fff;
+}
+
+.card-body {
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  flex-grow: 1;
+}
+
+.navbar.custom-navbar {
+  background: linear-gradient(to right, #2C3E50, #000000);
+  height: 70px;
+  padding: 0 1rem;
+}
+
+.navbar.custom-navbar .nav-link,
+.navbar.custom-navbarnavbar-brand {
+  color: white !important;
+}
+
+.navbar.custom-navbar .nav-link:hover,
+.navbar.custom-navbar .navbar-brand:hover {
+  color: #ddd !important;
+}
+
+.fixedCardSize {
+  width: 20rem;
+  height: 30rem;
+  overflow: hidden;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.cardsInRow {
+  justify-content: center;
+}
+
+.bgColor {
+  background: linear-gradient(to right, #e6c9f0, #d9c2e6, #cbb5db);
+}

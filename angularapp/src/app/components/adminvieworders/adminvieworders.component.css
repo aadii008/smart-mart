@@ -1,0 +1,8 @@
+table {
+    font-size: 0.95rem;
+  }
+  
+  select.form-select {
+    min-width: 150px;
+  }
+  

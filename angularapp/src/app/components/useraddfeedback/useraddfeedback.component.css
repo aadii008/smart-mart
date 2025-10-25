@@ -1,0 +1,45 @@
+  h1{
+    margin:auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  h3{
+    color:black;
+  } 
+.feedback-container {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    resize: none;
+  }
+  
+  .star-rating {
+    font-size: 24px;
+    color: lightgray;
+    cursor: pointer;
+    margin-bottom: 15px;
+  }
+  
+  .star-rating .filled {
+    color: gold;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+.error-message{
+  color:red; 
+  font-size: 14px;
+  margin-top: 5px;
+}

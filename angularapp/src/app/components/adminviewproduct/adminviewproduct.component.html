@@ -1,0 +1,141 @@
+<div class="container-fluid py-4 bgColor" style="background-image: url('assets/Designer.png'); background-size: cover; background-repeat: no-repeat; background-position: center;" >
+  <h2 class="mb-4 text-center" style="color:black;">Product List</h2>
+
+  <div class="row mb-4">
+    <div class="col-md-4 offset-md-4">
+
+      <label for="category" class="form-label" style="color: black;">Filter by Category:</label>
+      <select id="category" class="form-select" [(ngModel)]="selectedCategory" (change)="filterProducts()">
+        <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+      </select>
+    </div>
+  </div>
+
+  <div *ngIf="filteredProducts.length === 0" class="alert alert-warning text-center">
+    Oops! No Products are found.
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4 cardsInRow" *ngIf="filteredProducts.length > 0">
+    <div class="col card fixedCardSize" *ngFor="let product of filteredProducts">
+      <img [src]="image + product.photoImage" alt="img" class="card img">
+      <div class="card-body bg-light bg-opacity-75">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text">{{ product.description }}</p>
+        <p class="card-text"><strong>Category:</strong> {{ product.category }}</p>
+        <p class="card-text">
+          <strong>Price:</strong> ₹{{ product.price }}
+        </p>
+        <p class="card-text"><strong>Stock:</strong> {{ product.stock }}</p>
+        <button class="btn btn-primary" (click)="editProduct(product)" data-bs-toggle="modal"
+          data-bs-target="#editModal" style="margin-right: 2pc;">Edit</button>
+
+        <button class="btn btn-danger" (click)="openDeleteModal(product)" [disabled]="productIds.includes(product.productId)" data-bs-toggle="modal"
+          data-bs-target="#deleteModal">
+          {{productIds.includes(product.productId) ? 'Order Placed' : 'Delete'}}
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Do you want to delete this product?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+          <button type="button" class="btn btn-danger" (click)="confirmDelete()" data-bs-dismiss="modal">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <form (ngSubmit)="updateProduct()" #productForm="ngForm">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editModalLabel">Edit Product</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+              (click)="cancelEdit()"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="name" class="form-label">Name:</label>
+              <input type="text" id="name" class="form-control" [(ngModel)]="editingProduct.name" name="name"
+                #name="ngModel" required />
+              <div *ngIf="name.invalid && name.touched" class="text-danger">Name is required</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="description" class="form-label">Description:</label>
+              <input type="text" id="description" class="form-control" [(ngModel)]="editingProduct.description"
+                name="description" #description="ngModel" required>
+              <div *ngIf="description.invalid && description.touched" class="text-danger">Description is required</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="category" class="form-label">Category:</label>
+              <input type="text" id="category" class="form-control" [(ngModel)]="editingProduct.category"
+                name="category" #category="ngModel" required />
+              <div *ngIf="category.invalid && category.touched" class="text-danger">Category is required</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="price" class="form-label">Price:</label>
+              <input type="number" id="price" class="form-control" [(ngModel)]="editingProduct.price" name="price"
+                #price="ngModel" required />
+              <div *ngIf="price.invalid && price.touched" class="text-danger">Price is required</div>
+              <div *ngIf="productForm.value.price<1 && productForm.value.price!=null" class="text-danger">Price should
+                be greater than 0</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="stock" class="form-label">Stock:</label>
+              <input type="number" id="stock" class="form-control" [(ngModel)]="editingProduct.stock" name="stock"
+                #stock="ngModel" required />
+              <div *ngIf="stock.invalid && stock.touched" class="text-danger">Stock is required</div>
+              <div *ngIf="productForm.value.stock<0" class="text-danger">Stocks cannot be negative</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="image" class="form-label">Product Image</label>
+              <input type="file" id="image" class="form-control" (change)="onFileSelected($event)" />
+            </div>
+            
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success" [disabled]="!productForm.form.valid">Update</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+              (click)="cancelEdit()">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-success text-white" style="  background:linear-gradient(to right, #87CEEB, #B0E0E6);">
+          <h5 class="modal-title" id="confirmationModalLabel">Success</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+          <p>Product Updated!</p>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-success" (click)="closeModals()" style="  background:linear-gradient(to right, #87CEEB, #B0E0E6); color: white;">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>

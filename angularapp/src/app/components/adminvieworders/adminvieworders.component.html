@@ -1,0 +1,42 @@
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Requested Orders</h2>
+  
+    <div *ngIf="orders.length === 0" class="alert alert-warning text-center">
+      Oops! No Orders found.
+    </div>
+  
+    <div *ngIf="orders.length > 0" class="table-responsive">
+      <table class="table table-bordered table-hover align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th>Order ID</th>
+            <th>Customer Name</th>
+            <th>Products Name</th>
+            <th>Total Amount</th>
+            <th>Shipping Address</th>
+            <th>Quantity</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders">
+            <td>{{ order.orderId }}</td>
+            <td>{{ order.user.username }}</td>
+            <td>
+              <span *ngFor="let p of order.product; index as i">
+                {{ p.name}} <span *ngIf="i < order.product.length - 1">,</span>
+              </span>
+            </td>
+            <td>₹{{ order.totalAmount }}</td>
+            <td>{{ order.shippingAddress }}</td>
+            <td>{{ order.quantity }}</td>
+            <td>
+              <select class="form-select" [(ngModel)]="order.status" (change)="updateStatus(order.orderId, order.status)">
+                <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+              </select>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

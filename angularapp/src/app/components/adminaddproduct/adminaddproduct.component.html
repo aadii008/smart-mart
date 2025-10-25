@@ -1,0 +1,76 @@
+<div class="container-fluid mt-4 bgColor">
+  <form #addForm="ngForm" (ngSubmit)="addNewProduct(addForm)" enctype="multipart/form-data" class="form">
+    <div class="form-group mb-3">
+      <label for="name">Product Name</label>
+      <input id="name" #name="ngModel" name="name" [(ngModel)]="newProduct.name" class="form-control" required>
+      <div *ngIf="name.invalid && name.touched" class="text-danger">
+        Name is required
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="description">Description</label>
+      <textarea id="description" #description="ngModel" name="description" [(ngModel)]="newProduct.description"
+        class="form-control" required></textarea>
+      <div *ngIf="description.invalid && description.touched" class="text-danger">
+        Description is required
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="price">Price</label>
+      <input type="number" #price="ngModel" id="price" name="price" [(ngModel)]="newProduct.price" class="form-control"
+        required>
+      <div *ngIf="price.invalid && price.touched" class="text-danger">
+        <div *ngIf="price.errors['required']">Price is required</div>
+      </div>
+      <div *ngIf="addForm.value.price<1 && addForm.value.price!=null" class="text-danger">Price should be greater than 1
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="stock">Stock</label>
+      <input type="number" #stock="ngModel" id="stock" name="stock" [(ngModel)]="newProduct.stock" class="form-control"
+        required>
+      <div *ngIf="stock.invalid && stock.touched" class="text-danger">
+        <div *ngIf="stock.errors['required']">Stock is required</div>
+      </div>
+      <div *ngIf="addForm.value.stock<0" class="text-danger">Stocks cannot be less than 0</div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="category">Category</label>
+      <select id="category" #category="ngModel" name="category" [(ngModel)]="newProduct.category" class="form-select"
+        required>
+        <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+      </select>
+      <div *ngIf="category.invalid && category.touched" class="text-danger">
+        Category is required
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="image">Product Image</label>
+      <input type="file" id="image" (change)="onFileSelected($event)" class="form-control">
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="addForm.invalid">Add Product</button>
+  </form>
+
+  <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="successModalLabel">Success</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Product added successfully!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="reloadPage()">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

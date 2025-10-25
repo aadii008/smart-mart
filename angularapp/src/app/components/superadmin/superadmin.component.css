@@ -1,0 +1,15 @@
+table {
+    border-radius: 10px;
+    overflow: hidden;
+   }
+   th, td {
+    vertical-align: middle !important;
+   }
+   thead th {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+   }
+   tbody tr:hover {
+    background-color: #f8f9fa;
+    transition: 0.3s;
+   }

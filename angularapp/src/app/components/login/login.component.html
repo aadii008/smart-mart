@@ -1,0 +1,58 @@
+<div class="page-wrapper">
+
+  <div class="left-side">
+    <img src="/assets/diwali sale.jpg" alt="">
+  </div>
+
+
+  <div class="right-side">
+    <div class="background-wrapper">
+      <div class="login-container">
+        <h2>Login</h2>
+
+
+
+        <form #loginForm="ngForm" (ngSubmit)="login()">
+          <div class="form-group">
+            <label for="username">Username*</label>
+            <input type="text" id="username" name="username" [(ngModel)]="userName" #username="ngModel" required />
+            <div class="error-message" *ngIf="username.invalid && (username.dirty || username.touched)">
+              Username is required
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password*</label>
+            <input type="password" [type]="showPassword ? 'text' : 'password'" id="password" name="password"
+              [(ngModel)]="userPassword" #password="ngModel" required (keydown)="checkCapsLock($event)" />
+            <div class="error-message" *ngIf="password.invalid && (password.dirty || password.touched)">
+              Password is required
+            </div>
+          </div>
+
+
+          <div class="caps-lock-warning" *ngIf="capsLockOn">
+            ⚠️ Caps Lock is ON
+          </div>
+
+
+          <div class="show-password">
+            <input type="checkbox" id="showPassword" [(ngModel)]="showPassword" name="showPassword" />
+            <label for="showPassword">Show Password</label>
+          </div>
+          <div class="form-actions">
+            <button type="submit" [disabled]="loginForm.invalid">Login</button>
+          </div>
+        </form>
+
+        <p class="register-link">
+          Don't have an account? <a routerLink="/register">Register here</a>
+        </p>
+
+        <div *ngIf="errorMessage">Login Failed</div>
+        <div *ngIf="errorMessage && error.length > 0">{{error}}</div>
+
+      </div>
+    </div>
+  </div>
+</div>

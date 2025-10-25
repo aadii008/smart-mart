@@ -1,0 +1,75 @@
+.hero-banner {
+    width: 100%;
+    height: 400px;
+    background: url('/assets/fillcart3.jpg') no-repeat right center;
+    background-size: contain;
+    background-position: right center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    padding: 30px 40px;
+}
+
+   .hero-text h1 {
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: #1a1a1a;
+   }
+   .hero-text button {
+    background-color: #111;
+    color: #fff;
+    border-radius: 25px;
+    padding: 10px 25px;
+    transition: 0.3s;
+   }
+   .hero-text button:hover {
+    background-color: #ffb84d;
+   }
+
+
+   .category-card {
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    padding: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+   }
+   .category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+   }
+   .category-card img {
+    height: 150px;
+    object-fit: cover;
+    border-radius: 12px;
+   }
+
+   
+   .benefit-card {
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+   }
+   .benefit-card:hover {
+    transform: translateY(-5px);
+   }
+   .benefit-icon {
+    font-size: 2rem;
+    color: #ffb84d;
+   }
+
+   .banner-image-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .banner-img {
+    width: 100%;
+    max-width: 1024px;
+    height: 256px;
+    object-fit: cover;
+    border-radius: 16px;
+  }

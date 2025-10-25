@@ -1,0 +1,54 @@
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Feedback Details</h2>
+ 
+    <div *ngIf="feedbacks.length === 0" class="alert alert-warning text-center">
+      No data found.
+    </div>
+ 
+    <div *ngIf="feedbacks.length > 0" class="table-responsive">
+      <table class="table table-bordered table-hover align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th>ID</th>
+            <th>User Name</th>
+            <th>Rating</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let feedback of feedbacks">
+            <td>{{ feedback.user.username }}</td>
+            <td>{{ feedback.message }}</td>
+            <td>{{ feedback.rating }}</td>
+            
+            <td>
+              <button class="btn btn-info btn-sm" (click)="showProfile(feedback.user.userId)" data-bs-toggle="modal" data-bs-target="#profileModal">
+                Show Profile
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+ 
+    <!-- Profile Modal -->
+    <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true" *ngIf="selectedUser">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="profileModalLabel">User Profile</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()"></button>
+          </div>
+          <div class="modal-body" *ngIf="selectedUser">
+            <p><strong>Name:</strong> {{ selectedUser.username }}</p>
+            <p><strong>Email:</strong> {{ selectedUser.email }}</p>
+            <p><strong>Mobile:</strong> {{ selectedUser.mobileNumber }}</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModal()">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

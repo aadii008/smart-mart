@@ -1,0 +1,76 @@
+<div *ngIf="orderedProducts.length==0" class="text-center mt-5">
+  <h2 class="text-danger">Oops! Looks Like You Havent Ordered Anything Yet.</h2>
+</div>
+
+<div *ngIf="orderedProducts.length != 0" class="container my-4">
+  <h3 class="mb-3">Purchased Products</h3>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover align-middle text-center">
+      <thead class="table-primary text-dark">
+        <tr>
+          <th scope="col">Image</th>
+          <th scope="col">Product Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Price</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of orderedProducts">
+          <td>
+            <img [src]="imageUrl + product.photoImage" alt="Not found" class="img-thumbnail" width="100">
+          </td>
+          <td>{{product.name}}</td>
+          <td>{{product.description}}</td>
+          <td>₹{{ product.price }}</td>
+          <td><button class="btn btn-sm btn-outline-light" (click)="feedbackModal(product)">
+            Feedback
+          </button></td>
+          
+          
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div *ngIf="showModal" class="modal-backdrop show" (click)="closeModal()" onkeypress></div>
+  <div *ngIf="showModal" class="modal d-block" tabindex="-1">
+    <div class="modal-dialog" (click)="$event.stopPropagation()" onkeypress>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Feedback</h5>
+          <button type="button" class="btn-close" (click)="closeModal()"></button>
+        </div>
+        <form #feedbackForm="ngForm" (ngSubmit)="submitFeedback(feedbackForm)">
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="feedbackText" class="form-label">Feedback Message:</label>
+              <textarea id="feedbackText" name="feedbackText" [(ngModel)]="feedbackText" #feedbackTextModel="ngModel"
+                required class="form-control" placeholder="Write your feedback here..." rows="4"></textarea>
+              <div class="text-danger mt-1" *ngIf="feedbackTextModel.touched && feedbackTextModel.invalid">
+                Feedback is required
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for>Rating:</label>
+              <div class="star-rating">
+                <span *ngFor="let star of stars; let i = index" (click)="setRating(i + 1)" [class.filled]="i < rating"
+                  class="star" onkeypress>★</span>
+                <div class="text-danger mt-1" *ngIf="rating === 0 && feedbackForm.submitted">
+                  Rating is required
+                </div>
+              </div>
+            </div>
+
+            <input type="hidden" id="rating" name="rating" [(ngModel)]="rating" required />
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success" [disabled]="feedbackForm.invalid">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

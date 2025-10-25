@@ -1,0 +1,176 @@
+/* Order Card */
+.order-card {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Product Row */
+.row {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+}
+
+/* Image Column */
+.col-auto img {
+  width: 100px;
+  height: auto;
+  border-radius: 4px;
+}
+
+/* Info Column */
+.col {
+  flex: 1;
+}
+
+.product-name {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.product-category {
+  font-size: 13px;
+  color: #666;
+}
+
+.product-price {
+  font-size: 16px;
+  color: #28a745;
+  font-weight: bold;
+}
+
+.product-description {
+  font-size: 13px;
+  color: #555;
+  margin-top: 8px;
+}
+
+.button-container {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.cancel-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+.cancel-button:hover {
+  background-color: #c82333;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  color: #666666;
+  border: 1px solid #999999;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.view-button {
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+
+  z-index: 999;
+}
+
+
+.order-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  z-index: 1000;
+  max-width: 600px;
+  width: 90%;
+}
+
+.order-content {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.order-content h4,
+.order-content h5 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.order-content p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #444;
+}
+
+.order-separator {
+  border: none;
+  height: 1px;
+  background-color: #ddd;
+  margin: 10px 0;
+}
+.top-alert {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1050; /* higher than most elements */
+  width: auto;
+  max-width: 90%;
+  border-left: 5px solid #28a745;
+  background-color: #e6f4ea;
+  color: #155724;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  transition: all 0.3s ease-in-out;
+}
+
+.top-alert strong {
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+
+.top-alert .btn-close {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #155724;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.top-alert .btn-close:hover {
+  opacity: 1;
+}
